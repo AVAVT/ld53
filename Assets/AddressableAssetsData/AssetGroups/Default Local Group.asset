@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: b11edde4b3f49b64887747e73f3e3508
+  m_SerializeEntries:
+  - m_GUID: c0816b5413fac774b9e47b3bd9738e63
+    m_Address: Assets/_Prefabs/tile.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 41f3b263987819b48969bc576531478b
+    m_Address: Assets/_Prefabs/UI/MainMenu.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 92293c8971d4080489f725d2601f10e5
+    m_Address: Assets/_Prefabs/Game/Drone.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8846cd66f20fa8d4aa979cf72bb369f6
+    m_Address: Assets/_Prefabs/Game/Package.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: bf7079923b649de4b956a8098813c9b1, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 6b2c2f602eab9344da369b4b63c1c633, type: 2}
+    - {fileID: 11400000, guid: ee8a3a733cae96649af104b0e37bdfdd, type: 2}
