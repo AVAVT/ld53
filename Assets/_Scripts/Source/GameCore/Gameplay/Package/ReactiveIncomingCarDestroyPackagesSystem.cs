@@ -38,6 +38,7 @@ public class ReactiveIncomingCarDestroyPackagesSystem : ReactiveSystem<GameEntit
       if (pkg.mapPosition.Value.x < _minDestroyX || pkg.mapPosition.Value.x > _maxDestroyX) continue;
 
       _contexts.service.loggingService.Instance.Error($"Package {pkg.entityId.Value} destroyed. Reason: collision with delivery car.");
+      _contexts.game.ReplaceSuspicion(_contexts.game.suspicion.Value + 20);
       DestroyPackage(pkg);
     }
   }

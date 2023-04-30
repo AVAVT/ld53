@@ -41,10 +41,13 @@ public class ReactiveResolveTurnDecisionSystem : ReactiveSystem<GameEntity>
 
     foreach (var droneDecision in receivedDecision.Decision.droneDecisions) {
       var drone = _contexts.game.GetEntityWithEntityId(droneDecision.id);
+      if (drone.isDestroyed) continue;
+
       var newPos = drone.mapPosition.Value + GeneralUtils.DroneMoveToDirVector(droneDecision.move);
 
       if (!GeneralUtils.IsPositionInMap(newPos, _halfMapSize)) {
         _contexts.service.loggingService.Instance.Error($"Drone {drone.entityId.Value} eliminated. Reason: wandering out of bounds.");
+        _contexts.game.ReplaceSuspicion(_contexts.game.suspicion.Value + 20);
         DestroyDrone(drone);
         continue;
       }
@@ -63,6 +66,7 @@ public class ReactiveResolveTurnDecisionSystem : ReactiveSystem<GameEntity>
         if (_contexts.game.GetEntityWithTile(newPos).tile.Droppable) continue;
         DestroyPackage(package);
         _contexts.service.loggingService.Instance.Error($"Package {package.entityId.Value} destroyed. Reason: dropoff in forbidden area.");
+        _contexts.game.ReplaceSuspicion(_contexts.game.suspicion.Value + 20);
       }
       else if (droneDecision.move == Move.PickOrDrop) {
         var packagesAtPosition = _contexts.game.GetPackagesAtPosition(newPos);
@@ -73,6 +77,7 @@ public class ReactiveResolveTurnDecisionSystem : ReactiveSystem<GameEntity>
         var hd = _contexts.game.GetEntityWithDroneHoldingPackageId(pkg.entityId.Value);
         if (hd != null) {
           _contexts.service.loggingService.Instance.Error($"Package {pkg.entityId.Value} destroyed. Reason: multiple drones pickup.");
+          _contexts.game.ReplaceSuspicion(_contexts.game.suspicion.Value + 20);
           DestroyPackage(pkg);
           continue;
         }
@@ -90,6 +95,7 @@ public class ReactiveResolveTurnDecisionSystem : ReactiveSystem<GameEntity>
       foreach (var pkg in packagesAtPos.ToArray()) {
         DestroyPackage(pkg);
         _contexts.service.loggingService.Instance.Error($"Package {pkg.entityId.Value} destroyed. Reason: collision with another package.");
+        _contexts.game.ReplaceSuspicion(_contexts.game.suspicion.Value + 20);
       }
     }
 
@@ -116,7 +122,6 @@ public class ReactiveResolveTurnDecisionSystem : ReactiveSystem<GameEntity>
   {
     if (!package.isDestroyed) {
       package.isDestroyed = true;
-      package.RemoveMapPosition();
     }
 
     var holding = _contexts.game.GetEntityWithDroneHoldingPackageId(package.entityId.Value);

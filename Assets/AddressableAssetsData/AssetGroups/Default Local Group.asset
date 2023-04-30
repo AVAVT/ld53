@@ -49,6 +49,26 @@ MonoBehaviour:
     m_Address: Assets/_Prefabs/UI/Tutorial.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 600a07307402d564a93b0fedd4c79ccb
+    m_Address: Assets/_Prefabs/UI/SuspicionView.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f86008c2f49443c4399b519fb4fb7124
+    m_Address: Assets/_Prefabs/Game/OutgoingTruck.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0dbe34df1c2c47c419470730092a5364
+    m_Address: Assets/_Prefabs/Game/IncomingTruck.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 23c088e7f7ba12348ab2569446fa45ed
+    m_Address: Assets/_Prefabs/Game/Explosion.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 782db52d9b79db14faf2e0fb8beb4368
+    m_Address: Assets/_Prefabs/UI/Ending.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: bf7079923b649de4b956a8098813c9b1, type: 2}
   m_SchemaSet:

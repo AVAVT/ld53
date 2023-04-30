@@ -13,6 +13,8 @@ public struct TurnStateDto
   public int mapWidth { get; init; }
   public int mapHeight { get; init; }
   public int turn { get; init; }
+  public int nextIncomingAt { get; init; }
+  public int nextDeliveryAt { get; init; }
   public TileInfoDto[] tiles { get; init; }
   public DroneStateDto[] drones { get; init; }
   public PackageStateDto[] packages { get; init; }

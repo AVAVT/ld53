@@ -2,6 +2,7 @@
 {
   public PackageFeature(Contexts contexts) : base("PackageFeature")
   {
+    Add(new InitializeCreateCarVisualSystem(contexts));
     Add(new ReactiveRemovePackageHoldSystem(contexts));
     Add(new ReactiveSpawnIncomingCarSystem(contexts));
     Add(new ReactiveIncomingCarDestroyPackagesSystem(contexts));

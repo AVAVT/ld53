@@ -15,4 +15,5 @@ public class LevelConfigModel : ScriptableObject
   [Range(0f, 1f)]
   public float DeliveryRatio;
   public List<Vector2Int> Drones;
+  public List<PackageType> PreloadedPackages;
 }

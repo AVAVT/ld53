@@ -26,6 +26,6 @@ public class ReactiveStartGameSystem : ReactiveSystem<GameEventEntity>
   {
     _contexts.game.ReplaceLevel(0);
     _contexts.game.ReplaceMainMenu(true);
-    _contexts.service.gameManagerService.Instance.ChangeScene(SceneTag.Tutorial, 0.5f);
+    _contexts.service.gameManagerService.Instance.ChangeScene(SceneTag.Tutorial, 1f);
   }
 }

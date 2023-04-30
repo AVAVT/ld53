@@ -120,6 +120,7 @@ namespace DevDef.SceneManagers
       SceneTag.Gameplay => "Gameplay",
       SceneTag.LevelTitle => "LevelTitle",
       SceneTag.Tutorial => "Tutorial",
+      SceneTag.Ending => "Ending",
       _ => ""
     };
 

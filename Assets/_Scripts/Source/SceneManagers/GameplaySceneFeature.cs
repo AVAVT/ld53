@@ -10,6 +10,8 @@ namespace DevDef.SceneManagers
       Add(new TurnDecisionFeature(contexts));
       Add(new DroneFeature(contexts));
       Add(new PackageFeature(contexts));
+      Add(new SuspicionFeature(contexts));
+      Add(new ExplosionFeature(contexts));
     }
   }
 }

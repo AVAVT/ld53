@@ -26,5 +26,17 @@ public class InitializeLevelPackagesSystem : IInitializeSystem
     var numberToRemove = Mathf.Floor(1 - deliveryPackages.Count * levelConfig.DeliveryRatio);
     for (var i = 0; i < numberToRemove; i++) deliveryPackages.RemoveRandom();
     _contexts.game.ReplaceLevelDeliveries(deliveryPackages, levelConfig.DeliveryPerWave, levelConfig.DeliveryInterval);
+
+    var preloaded = new List<PackageType>(levelConfig.PreloadedPackages);
+    var gameplayConfig = _contexts.config.gameplayConfig.Value;
+    for (var x = 1; x <= gameplayConfig.StorageZone.x / 2 && preloaded.Count > 0; x++) {
+      for (var y = 1; y <= gameplayConfig.StorageZone.y / 2 && preloaded.Count > 0; y++) {
+        var type = preloaded.RemoveRandom();
+        var package = _contexts.game.CreateEntity();
+        package.AddPackage(type);
+        package.AddExistInScene(SceneTag.Gameplay);
+        package.AddMapPosition(new(x, y));
+      }
+    }
   }
 }

@@ -67,7 +67,7 @@ public class TutorialView : GameUIViewController, IEventListener, ITutorialListe
         break;
       case 4:
         _playerText.SetProps(new(""));
-        _aiText.SetProps(new("Speaking of which, you look a lot like a human to me... are you..."));
+        _aiText.SetProps(new("Speaking of which, you look a lot like human to me... are you..."));
         _playerBubble.SetActive(false);
         _aiSpark.SetActive(true);
         break;
@@ -79,7 +79,7 @@ public class TutorialView : GameUIViewController, IEventListener, ITutorialListe
         break;
       case 6:
         _playerText.SetProps(new(""));
-        _aiText.SetProps(new("... using 1 of those new human imitation avatar? Looks very realistic. Though I don't understand the logic behind using such inconvenient avatar."));
+        _aiText.SetProps(new("... using 1 of those new human imitation avatars? Looks very realistic. Though I don't understand the logic behind using such inconvenient avatar."));
         _playerBubble.SetActive(false);
         _aiSpark.SetActive(true);
         break;
@@ -139,12 +139,6 @@ public class TutorialView : GameUIViewController, IEventListener, ITutorialListe
         _aiText.SetProps(new(""));
         _playerBubble.SetActive(true);
         _aiSpark.SetActive(false);
-        break;
-      case 17:
-        _playerText.SetProps(new(""));
-        _aiText.SetProps(new("You can find the control center up stair. Dispose of the body if you need space."));
-        _playerBubble.SetActive(false);
-        _aiSpark.SetActive(true);
         break;
       default:
         _button.gameObject.SetActive(false);

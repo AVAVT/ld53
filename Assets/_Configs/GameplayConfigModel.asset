@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameplayConfigModel
   m_EditorClassIdentifier: 
   TurnTime: 0.3
-  DeliveryInterval: 100
+  ImportInterval: 100
   BoardSize: {x: 27, y: 17}
   StorageZone: {x: 17, y: 17}
   IncomingZone:
@@ -40,3 +40,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ef593765d2a31bb43a4d84b88ddb3dc4, type: 2}
   - {fileID: 11400000, guid: c6d7a8b20e2a8d04098456e8feecdb13, type: 2}
   - {fileID: 11400000, guid: 9ddcf1a85281fbd4fba3195d7c2c194f, type: 2}
+  - {fileID: 11400000, guid: 153988601efcb974da3ebfadfa569527, type: 2}
+  - {fileID: 11400000, guid: 7f35dcb9c07bc864ba59b58fa9613ee9, type: 2}

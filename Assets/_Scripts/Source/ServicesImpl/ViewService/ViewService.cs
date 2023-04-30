@@ -25,13 +25,13 @@ namespace DevDef.Services
       _loggingService = contexts.service.loggingService.Instance;
     }
 
+    // TODO pool these things
     public void AddViewForEntityIfNeeded(IEntity entity, int index, IComponent component)
     {
       var config = _configContext.GetEntityWithEntityPrefabLinkConfig(index)?.entityPrefabLinkConfig.Config;
       if (config == null) return;
 
-      switch (config.Type)
-      {
+      switch (config.Type) {
         case EntityViewType.UIView:
           LoadUIAsset(entity as GameEntity, config.PrefabReference);
           break;
@@ -46,8 +46,7 @@ namespace DevDef.Services
 
     public async void LoadGameAsset(GameEntity entity, AssetReference prefabReference)
     {
-      try
-      {
+      try {
         var entityId = entity.entityId.Value;
 
         var prefab = (await LoadPrefab(prefabReference)).GetComponent<GameBaseController>();
@@ -63,16 +62,14 @@ namespace DevDef.Services
 
         entity.AddView(view);
       }
-      catch (Exception e)
-      {
+      catch (Exception e) {
         _loggingService.Error(e);
       }
     }
 
     public async void LoadUIAsset(GameEntity entity, AssetReference prefabReference)
     {
-      try
-      {
+      try {
         var entityId = entity.entityId.Value;
 
         var prefab = (await LoadPrefab(prefabReference)).GetComponent<GameUIViewController>();
@@ -89,8 +86,7 @@ namespace DevDef.Services
 
         entity.AddView(view);
       }
-      catch (Exception e)
-      {
+      catch (Exception e) {
         _loggingService.Error(e);
       }
     }

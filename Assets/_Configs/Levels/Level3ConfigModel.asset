@@ -17,11 +17,12 @@ MonoBehaviour:
   Blue: 9
   Purple: 0
   ItemPerWave: 4
-  DeliveryPerWave: 4
-  DeliveryInterval: 120
+  DeliveryPerWave: 3
+  DeliveryInterval: 100
   FirstDeliveryBuffer: 100
-  DeliveryRatio: 0.8
+  DeliveryRatio: 1
   Drones:
   - {x: 0, y: 0}
   - {x: 3, y: 2}
   - {x: -2, y: 3}
+  PreloadedPackages: 00000000000000000200000002000000

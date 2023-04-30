@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Entitas;
+using UnityEngine;
 
 public class ReactiveTurnRequestDecision : ReactiveSystem<GameEntity>
 {
@@ -11,6 +12,8 @@ public class ReactiveTurnRequestDecision : ReactiveSystem<GameEntity>
   readonly IGroup<GameEntity> _drones;
   readonly IGroup<GameEntity> _packages;
   readonly IGroup<GameEntity> _expectedDeliveries;
+  readonly LevelConfigModel _levelConfig;
+  readonly GameplayConfigModel _gameplayConfig;
   public ReactiveTurnRequestDecision(Contexts contexts) : base(contexts.game)
   {
     _contexts = contexts;
@@ -18,6 +21,8 @@ public class ReactiveTurnRequestDecision : ReactiveSystem<GameEntity>
     _drones = contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Drone).NoneOf(GameMatcher.Destroyed));
     _packages = contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Package).NoneOf(GameMatcher.Destroyed));
     _expectedDeliveries = contexts.game.GetGroup(GameMatcher.ExpectedDelivery);
+    _gameplayConfig = contexts.config.gameplayConfig.Value;
+    _levelConfig = _gameplayConfig.Levels[_contexts.game.level.Value];
   }
 
   protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
@@ -36,9 +41,13 @@ public class ReactiveTurnRequestDecision : ReactiveSystem<GameEntity>
 
     DoTurn(new()
     {
-      mapWidth = _contexts.config.gameplayConfig.Value.BoardSize.x,
-      mapHeight = _contexts.config.gameplayConfig.Value.BoardSize.y,
+      mapWidth = _gameplayConfig.BoardSize.x,
+      mapHeight = _gameplayConfig.BoardSize.y,
       turn = _contexts.game.turn.Value,
+
+      // TODO Jam code, beautify
+      nextDeliveryAt = Mathf.Max(_levelConfig.FirstDeliveryBuffer + _levelConfig.DeliveryInterval, _contexts.game.turn.Value + (_levelConfig.DeliveryInterval - (_contexts.game.turn.Value - _levelConfig.FirstDeliveryBuffer) % _levelConfig.DeliveryInterval)),
+      nextIncomingAt = _contexts.game.turn.Value + (_gameplayConfig.ImportInterval - (_contexts.game.turn.IncomingTurn % _gameplayConfig.ImportInterval)),
       tiles = _contexts.game.mapInfo.Tiles,
       drones = _drones.AsEnumerable().Select(drone => new DroneStateDto
       {
@@ -69,6 +78,7 @@ public class ReactiveTurnRequestDecision : ReactiveSystem<GameEntity>
     try {
       var decision = await _aiService.DoTurn(turnState);
       _contexts.game.SetReceivedDecision(turnState.turn, decision);
+      _contexts.game.receivedDecisionEntity.AddExistInScene(SceneTag.Gameplay);
     }
     catch (Exception e) {
       _contexts.service.loggingService.Instance.Error(e);

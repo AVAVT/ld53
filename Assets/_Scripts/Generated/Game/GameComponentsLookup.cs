@@ -9,50 +9,65 @@
 public static class GameComponentsLookup {
 
     public const int ActiveScene = 0;
-    public const int AnyPauseListener = 1;
-    public const int AnyPauseRemovedListener = 2;
-    public const int AnyTurnListener = 3;
-    public const int Destroyed = 4;
-    public const int Disabled = 5;
-    public const int DisabledListener = 6;
-    public const int DisabledRemovedListener = 7;
-    public const int DroneAction = 8;
-    public const int Drone = 9;
-    public const int DroneHolding = 10;
-    public const int EntityId = 11;
-    public const int ExistInScene = 12;
-    public const int ExpectedDelivery = 13;
-    public const int IncomingCar = 14;
-    public const int Level = 15;
-    public const int LevelDeliveries = 16;
-    public const int LevelFinished = 17;
-    public const int LevelPackages = 18;
-    public const int LevelTitle = 19;
-    public const int MainMenu = 20;
-    public const int MainMenuListener = 21;
-    public const int MapInfo = 22;
-    public const int MapPosition = 23;
-    public const int MenuIndex = 24;
-    public const int MenuIndexListener = 25;
-    public const int MenuSize = 26;
-    public const int MenuSizeListener = 27;
-    public const int OutgoingCar = 28;
-    public const int Package = 29;
-    public const int Pause = 30;
-    public const int Position = 31;
-    public const int PositionListener = 32;
-    public const int ReceivedDecision = 33;
-    public const int Tile = 34;
-    public const int Time = 35;
-    public const int Turn = 36;
-    public const int Tutorial = 37;
-    public const int TutorialListener = 38;
-    public const int View = 39;
+    public const int AnyIncomingCarListener = 1;
+    public const int AnyIncomingCarRemovedListener = 2;
+    public const int AnyOutgoingCarListener = 3;
+    public const int AnyOutgoingCarRemovedListener = 4;
+    public const int AnyPauseListener = 5;
+    public const int AnyPauseRemovedListener = 6;
+    public const int AnyTurnListener = 7;
+    public const int Destroyed = 8;
+    public const int Disabled = 9;
+    public const int DisabledListener = 10;
+    public const int DisabledRemovedListener = 11;
+    public const int DroneAction = 12;
+    public const int Drone = 13;
+    public const int DroneHolding = 14;
+    public const int Ending = 15;
+    public const int EndingListener = 16;
+    public const int EntityId = 17;
+    public const int ExistInScene = 18;
+    public const int ExpectedDelivery = 19;
+    public const int Explosion = 20;
+    public const int IncomingCar = 21;
+    public const int IncomingCarVisual = 22;
+    public const int Level = 23;
+    public const int LevelDeliveries = 24;
+    public const int LevelFinished = 25;
+    public const int LevelPackages = 26;
+    public const int LevelTitle = 27;
+    public const int MainMenu = 28;
+    public const int MainMenuListener = 29;
+    public const int MapInfo = 30;
+    public const int MapPosition = 31;
+    public const int MenuIndex = 32;
+    public const int MenuIndexListener = 33;
+    public const int MenuSize = 34;
+    public const int MenuSizeListener = 35;
+    public const int OutgoingCar = 36;
+    public const int OutgoingCarVisual = 37;
+    public const int Package = 38;
+    public const int Pause = 39;
+    public const int Position = 40;
+    public const int PositionListener = 41;
+    public const int ReceivedDecision = 42;
+    public const int Suspicion = 43;
+    public const int SuspicionListener = 44;
+    public const int Tile = 45;
+    public const int Time = 46;
+    public const int Turn = 47;
+    public const int Tutorial = 48;
+    public const int TutorialListener = 49;
+    public const int View = 50;
 
-    public const int TotalComponents = 40;
+    public const int TotalComponents = 51;
 
     public static readonly string[] componentNames = {
         "ActiveScene",
+        "AnyIncomingCarListener",
+        "AnyIncomingCarRemovedListener",
+        "AnyOutgoingCarListener",
+        "AnyOutgoingCarRemovedListener",
         "AnyPauseListener",
         "AnyPauseRemovedListener",
         "AnyTurnListener",
@@ -63,10 +78,14 @@ public static class GameComponentsLookup {
         "DroneAction",
         "Drone",
         "DroneHolding",
+        "Ending",
+        "EndingListener",
         "EntityId",
         "ExistInScene",
         "ExpectedDelivery",
+        "Explosion",
         "IncomingCar",
+        "IncomingCarVisual",
         "Level",
         "LevelDeliveries",
         "LevelFinished",
@@ -81,11 +100,14 @@ public static class GameComponentsLookup {
         "MenuSize",
         "MenuSizeListener",
         "OutgoingCar",
+        "OutgoingCarVisual",
         "Package",
         "Pause",
         "Position",
         "PositionListener",
         "ReceivedDecision",
+        "Suspicion",
+        "SuspicionListener",
         "Tile",
         "Time",
         "Turn",
@@ -96,6 +118,10 @@ public static class GameComponentsLookup {
 
     public static readonly System.Type[] componentTypes = {
         typeof(ActiveSceneComponent),
+        typeof(AnyIncomingCarListenerComponent),
+        typeof(AnyIncomingCarRemovedListenerComponent),
+        typeof(AnyOutgoingCarListenerComponent),
+        typeof(AnyOutgoingCarRemovedListenerComponent),
         typeof(AnyPauseListenerComponent),
         typeof(AnyPauseRemovedListenerComponent),
         typeof(AnyTurnListenerComponent),
@@ -106,10 +132,14 @@ public static class GameComponentsLookup {
         typeof(DroneActionComponent),
         typeof(DroneComponent),
         typeof(DroneHoldingComponent),
+        typeof(EndingComponent),
+        typeof(EndingListenerComponent),
         typeof(EntityIdComponent),
         typeof(ExistInSceneComponent),
         typeof(ExpectedDeliveryComponent),
+        typeof(ExplosionComponent),
         typeof(IncomingCarComponent),
+        typeof(IncomingCarVisualComponent),
         typeof(LevelComponent),
         typeof(LevelDeliveriesComponent),
         typeof(LevelFinishedComponent),
@@ -124,11 +154,14 @@ public static class GameComponentsLookup {
         typeof(MenuSizeComponent),
         typeof(MenuSizeListenerComponent),
         typeof(OutgoingCarComponent),
+        typeof(OutgoingCarVisualComponent),
         typeof(PackageComponent),
         typeof(PauseComponent),
         typeof(PositionComponent),
         typeof(PositionListenerComponent),
         typeof(ReceivedDecisionComponent),
+        typeof(SuspicionComponent),
+        typeof(SuspicionListenerComponent),
         typeof(TileComponent),
         typeof(TimeComponent),
         typeof(TurnComponent),

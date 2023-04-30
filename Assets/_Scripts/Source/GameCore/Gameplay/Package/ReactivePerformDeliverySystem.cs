@@ -47,7 +47,7 @@ public class ReactivePerformDeliverySystem : ReactiveSystem<GameEntity>
     }
 
     if (_contexts.game.hasOutgoingCar) _contexts.game.RemoveOutgoingCar();
-    if (_contexts.game.levelDeliveries.Packages.Count <= 0) _contexts.game.ReplaceLevelFinished(true);
+    if (_contexts.game.levelDeliveries.Packages.Count <= 0 && !_contexts.game.hasLevelFinished) _contexts.game.ReplaceLevelFinished(true);
   }
 
   void DestroyPackage(GameEntity package)
@@ -55,18 +55,14 @@ public class ReactivePerformDeliverySystem : ReactiveSystem<GameEntity>
     if (package == null) return;
 
     var holding = _contexts.game.GetEntityWithDroneHoldingPackageId(package.entityId.Value);
-    if (holding != null) {
-      _contexts.game.GetEntityWithEntityId(holding.droneHolding.droneId).isDestroyed = true;
-      holding.Destroy();
-    }
+    holding?.Destroy();
 
-    if (!package.isDestroyed) {
-      package.Destroy();
-    }
+    if (!package.isDestroyed) package.Destroy();
   }
 
   void ReportMissDelivery(Vector2Int location, ExpectedDeliveryComponent expectation, PackageComponent reality)
   {
     _contexts.service.loggingService.Instance.Error($"Delivery {location} failed. Reason: expecting [{expectation.Type}] but received [{(reality != null ? reality.Type : "Null")}]");
+    _contexts.game.ReplaceSuspicion(_contexts.game.suspicion.Value + 20);
   }
 }

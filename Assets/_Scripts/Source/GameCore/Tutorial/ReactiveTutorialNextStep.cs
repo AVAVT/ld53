@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Entitas;
-using Entitas.CodeGeneration.Attributes;
-using UnityEngine;
 
 public class ReactiveTutorialNextStep : ReactiveSystem<GameEventEntity>
 {
@@ -29,7 +27,7 @@ public class ReactiveTutorialNextStep : ReactiveSystem<GameEventEntity>
     foreach (var entity in entities) {
       if (entity.tutorialNextEvent.Step != _contexts.game.tutorial.Step) continue;
 
-      if (entity.tutorialNextEvent.Step == 17) _contexts.service.gameManagerService.Instance.ChangeScene(SceneTag.LevelTitle, 0.5f);
+      if (entity.tutorialNextEvent.Step == 16) _contexts.service.gameManagerService.Instance.ChangeScene(SceneTag.LevelTitle, 0.3f);
 
       if (entity.tutorialNextEvent.Step is 9 or 12 or 14) {
         _contexts.game.ReplaceTutorial(10);
