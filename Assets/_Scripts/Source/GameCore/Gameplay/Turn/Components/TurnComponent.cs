@@ -5,5 +5,5 @@ using Entitas.CodeGeneration.Attributes;
 public class TurnComponent : IComponent
 {
   public int Value;
-  public int PackageTurn => Value + 20;
+  public int IncomingTurn => Value - 5;
 }

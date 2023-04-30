@@ -6,5 +6,7 @@
     Add(new ReactiveSpawnIncomingCarSystem(contexts));
     Add(new ReactiveIncomingCarDestroyPackagesSystem(contexts));
     Add(new ReactiveSpawnPackageSystem(contexts));
+    Add(new ReactiveSpawnOutgoingCarSystem(contexts));
+    Add(new ReactivePerformDeliverySystem(contexts));
   }
 }

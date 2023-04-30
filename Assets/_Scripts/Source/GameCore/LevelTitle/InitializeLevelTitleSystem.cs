@@ -12,5 +12,6 @@ public class InitializeLevelTitleSystem : IInitializeSystem
   {
     _contexts.game.isLevelTitle = true;
     _contexts.game.levelTitleEntity.AddExistInScene(SceneTag.LevelTitle);
+    if (_contexts.game.hasLevelFinished) _contexts.game.RemoveLevelFinished();
   }
 }

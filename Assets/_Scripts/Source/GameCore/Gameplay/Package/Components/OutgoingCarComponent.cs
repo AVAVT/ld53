@@ -3,7 +3,7 @@ using Entitas;
 using Entitas.CodeGeneration.Attributes;
 
 [Game, Unique]
-public class OutcomingCarComponent : IComponent
+public class OutgoingCarComponent : IComponent
 {
   public List<PackageType> Expects;
 }

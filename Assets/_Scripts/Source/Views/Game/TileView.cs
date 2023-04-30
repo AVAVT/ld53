@@ -3,7 +3,6 @@
 [RequireComponent(typeof(SpriteRenderer))]
 public class TileView : GameBaseController
 {
-
   public override void InitializeView(Contexts contexts, GameEntity entity)
   {
     base.InitializeView(contexts, entity);

@@ -9,6 +9,7 @@ public class PackageView : GameBaseController
   {
     base.InitializeView(contexts, entity);
     GetComponent<SpriteRenderer>().color = _colors[(int)entity.package.Type];
+    transform.position = Vector3.one * 9999;
   }
   void Update()
   {

@@ -10,12 +10,14 @@ public class ReactiveTurnRequestDecision : ReactiveSystem<GameEntity>
   readonly IAiService _aiService;
   readonly IGroup<GameEntity> _drones;
   readonly IGroup<GameEntity> _packages;
+  readonly IGroup<GameEntity> _expectedDeliveries;
   public ReactiveTurnRequestDecision(Contexts contexts) : base(contexts.game)
   {
     _contexts = contexts;
     _aiService = contexts.service.aIService.Instance;
     _drones = contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Drone).NoneOf(GameMatcher.Destroyed));
     _packages = contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Package).NoneOf(GameMatcher.Destroyed));
+    _expectedDeliveries = contexts.game.GetGroup(GameMatcher.ExpectedDelivery);
   }
 
   protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
@@ -34,6 +36,8 @@ public class ReactiveTurnRequestDecision : ReactiveSystem<GameEntity>
 
     DoTurn(new()
     {
+      mapWidth = _contexts.config.gameplayConfig.Value.BoardSize.x,
+      mapHeight = _contexts.config.gameplayConfig.Value.BoardSize.y,
       turn = _contexts.game.turn.Value,
       tiles = _contexts.game.mapInfo.Tiles,
       drones = _drones.AsEnumerable().Select(drone => new DroneStateDto
@@ -48,7 +52,14 @@ public class ReactiveTurnRequestDecision : ReactiveSystem<GameEntity>
         x = package.mapPosition.Value.x,
         y = package.mapPosition.Value.y,
         id = package.entityId.Value,
+        type = package.package.Type,
         heldBy = _contexts.game.GetEntityWithDroneHoldingPackageId(package.entityId.Value)?.droneHolding.droneId
+      }).ToArray(),
+      expectedDeliveries = _expectedDeliveries.AsEnumerable().Select(e => new ExpectedDeliveryDto
+      {
+        x = e.mapPosition.Value.x,
+        y = e.mapPosition.Value.y,
+        type = e.expectedDelivery.Type
       }).ToArray()
     }).ConfigureAwait(false);
   }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Entitas;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class ReactiveResolveTurnDecisionSystem : ReactiveSystem<GameEntity>
   readonly Vector2Int _halfMapSize;
   readonly IGroup<GameEntity> _packages;
   readonly IGroup<GameEntity> _livingDrones;
+  readonly List<GameEntity> _packageCache = new();
 
   public ReactiveResolveTurnDecisionSystem(Contexts contexts) : base(contexts.game)
   {
@@ -42,7 +44,7 @@ public class ReactiveResolveTurnDecisionSystem : ReactiveSystem<GameEntity>
       var newPos = drone.mapPosition.Value + GeneralUtils.DroneMoveToDirVector(droneDecision.move);
 
       if (!GeneralUtils.IsPositionInMap(newPos, _halfMapSize)) {
-        _contexts.service.loggingService.Instance.Error($"Drone {drone.entityId.Value} eliminated. Reason: wandering out of bounds");
+        _contexts.service.loggingService.Instance.Error($"Drone {drone.entityId.Value} eliminated. Reason: wandering out of bounds.");
         DestroyDrone(drone);
         continue;
       }
@@ -66,12 +68,20 @@ public class ReactiveResolveTurnDecisionSystem : ReactiveSystem<GameEntity>
         var packagesAtPosition = _contexts.game.GetPackagesAtPosition(newPos);
         if (packagesAtPosition.Count <= 0) continue;
 
-        var package = packagesAtPosition.Any();
-        _contexts.game.CreateEntity().AddDroneHolding(drone.entityId.Value, package.entityId.Value);
+        var pkg = packagesAtPosition.Any();
+
+        var hd = _contexts.game.GetEntityWithDroneHoldingPackageId(pkg.entityId.Value);
+        if (hd != null) {
+          _contexts.service.loggingService.Instance.Error($"Package {pkg.entityId.Value} destroyed. Reason: multiple drones pickup.");
+          DestroyPackage(pkg);
+          continue;
+        }
+
+        _contexts.game.CreateEntity().AddDroneHolding(drone.entityId.Value, pkg.entityId.Value);
       }
     }
 
-    foreach (var package in _packages) {
+    foreach (var package in _packages.GetEntities(_packageCache)) {
       if (package.isDestroyed) continue;
 
       var packagesAtPos = _contexts.game.GetPackagesAtPosition(package.mapPosition.Value);
@@ -79,7 +89,7 @@ public class ReactiveResolveTurnDecisionSystem : ReactiveSystem<GameEntity>
 
       foreach (var pkg in packagesAtPos.ToArray()) {
         DestroyPackage(pkg);
-        _contexts.service.loggingService.Instance.Error($"Package {pkg.entityId.Value} destroyed. Reason: collision with another package");
+        _contexts.service.loggingService.Instance.Error($"Package {pkg.entityId.Value} destroyed. Reason: collision with another package.");
       }
     }
 

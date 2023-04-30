@@ -18,7 +18,7 @@ public class InitMapSystem : IInitializeSystem
     var halfHeight = config.BoardSize.y / 2;
     var halfStorageWidth = config.StorageZone.x / 2;
     var halfStorageHeight = config.StorageZone.y / 2;
-    var outcomingZone = config.OutcomingZone;
+    var outgoingZone = config.OutgoingZone;
 
     List<TileInfoDto> tiles = new();
     for (var x = -halfWidth; x <= halfWidth; x++) {
@@ -27,14 +27,13 @@ public class InitMapSystem : IInitializeSystem
         tile.AddExistInScene(SceneTag.Gameplay);
         tile.AddTile(
           new(x, y),
-          IsLocationADropZone(x, y, halfStorageWidth, halfStorageHeight, outcomingZone)
+          IsLocationADropZone(x, y, halfStorageWidth, halfStorageHeight, outgoingZone)
         );
         tiles.Add(new()
         {
-          X = x,
-          Y = y,
-          Pickable = !config.IncomingZone.Contains(new(x, y)),
-          Droppable = tile.tile.Droppable
+          x = x,
+          y = y,
+          droppable = tile.tile.Droppable
         });
       }
     }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Entitas;
+using UnityEngine;
 
 public class InitializeLevelPackagesSystem : IInitializeSystem
 {
@@ -19,7 +20,11 @@ public class InitializeLevelPackagesSystem : IInitializeSystem
     for (var i = 0; i < levelConfig.Green; i++) levelPackages.Add(PackageType.Green);
     for (var i = 0; i < levelConfig.Blue; i++) levelPackages.Add(PackageType.Blue);
     for (var i = 0; i < levelConfig.Purple; i++) levelPackages.Add(PackageType.Purple);
-
     _contexts.game.ReplaceLevelPackages(levelPackages, levelConfig.ItemPerWave);
+
+    var deliveryPackages = new List<PackageType>(levelPackages);
+    var numberToRemove = Mathf.Floor(1 - deliveryPackages.Count * levelConfig.DeliveryRatio);
+    for (var i = 0; i < numberToRemove; i++) deliveryPackages.RemoveRandom();
+    _contexts.game.ReplaceLevelDeliveries(deliveryPackages, levelConfig.DeliveryPerWave, levelConfig.DeliveryInterval);
   }
 }

@@ -12,11 +12,11 @@ app.get("/", (req, res) => {
 });
 
 app.post("/captcha", async (req, res) => {
-  res.send(await captcha(req.body.question));
+  res.send(captcha(req.body.question));
 });
 
 app.post("/do-turn", async (req, res) => {
-  res.send(await doTurn(req.body));
+  res.send(doTurn(req.body));
 });
 
 app.listen(PORT, () => {

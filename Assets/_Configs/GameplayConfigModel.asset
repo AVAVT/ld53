@@ -12,30 +12,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 913f675e9f46eda458020ec92bafe34f, type: 3}
   m_Name: GameplayConfigModel
   m_EditorClassIdentifier: 
-  TurnTime: 0.5
-  DeliveryInterval: 40
+  TurnTime: 0.3
+  DeliveryInterval: 100
   BoardSize: {x: 27, y: 17}
   StorageZone: {x: 17, y: 17}
   IncomingZone:
-  - {x: -12, y: -1}
-  - {x: -11, y: -1}
-  - {x: -10, y: -1}
-  - {x: -12, y: 0}
-  - {x: -11, y: 0}
-  - {x: -10, y: 0}
   - {x: -12, y: 1}
+  - {x: -12, y: 0}
+  - {x: -12, y: -1}
   - {x: -11, y: 1}
+  - {x: -11, y: 0}
+  - {x: -11, y: -1}
   - {x: -10, y: 1}
-  OutcomingZone:
-  - {x: 12, y: -1}
-  - {x: 11, y: -1}
+  - {x: -10, y: 0}
+  - {x: -10, y: -1}
+  OutgoingZone:
   - {x: 10, y: -1}
-  - {x: 12, y: 0}
-  - {x: 11, y: 0}
   - {x: 10, y: 0}
-  - {x: 12, y: 1}
-  - {x: 11, y: 1}
   - {x: 10, y: 1}
+  - {x: 11, y: -1}
+  - {x: 11, y: 0}
+  - {x: 11, y: 1}
+  - {x: 12, y: -1}
+  - {x: 12, y: 0}
+  - {x: 12, y: 1}
   Levels:
   - {fileID: 11400000, guid: ef593765d2a31bb43a4d84b88ddb3dc4, type: 2}
   - {fileID: 11400000, guid: c6d7a8b20e2a8d04098456e8feecdb13, type: 2}
+  - {fileID: 11400000, guid: 9ddcf1a85281fbd4fba3195d7c2c194f, type: 2}

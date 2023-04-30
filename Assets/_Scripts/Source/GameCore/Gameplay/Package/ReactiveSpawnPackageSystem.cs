@@ -1,18 +1,17 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Entitas;
 using UnityEngine;
 
 public class ReactiveSpawnPackageSystem : ReactiveSystem<GameEntity>
 {
   readonly Contexts _contexts;
-  readonly int _deliveryInterval;
+  readonly int _importInterval;
   readonly List<Vector2Int> _spawnLocations;
 
   public ReactiveSpawnPackageSystem(Contexts contexts) : base(contexts.game)
   {
     _contexts = contexts;
-    _deliveryInterval = contexts.config.gameplayConfig.Value.DeliveryInterval;
+    _importInterval = contexts.config.gameplayConfig.Value.ImportInterval;
     _spawnLocations = contexts.config.gameplayConfig.Value.IncomingZone;
   }
 
@@ -23,7 +22,7 @@ public class ReactiveSpawnPackageSystem : ReactiveSystem<GameEntity>
 
   protected override bool Filter(GameEntity entity)
   {
-    return entity.turn.PackageTurn % _deliveryInterval == 0;
+    return entity.turn.IncomingTurn % _importInterval == 0;
   }
 
   protected override void Execute(List<GameEntity> entities)

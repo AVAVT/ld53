@@ -21,30 +21,32 @@ public static class GameComponentsLookup {
     public const int DroneHolding = 10;
     public const int EntityId = 11;
     public const int ExistInScene = 12;
-    public const int IncomingCar = 13;
-    public const int Level = 14;
-    public const int LevelFinished = 15;
-    public const int LevelPackages = 16;
-    public const int LevelTitle = 17;
-    public const int MainMenu = 18;
-    public const int MapInfo = 19;
-    public const int MapPosition = 20;
-    public const int MenuIndex = 21;
-    public const int MenuIndexListener = 22;
-    public const int MenuSize = 23;
-    public const int MenuSizeListener = 24;
-    public const int OutcomingCar = 25;
-    public const int Package = 26;
-    public const int Pause = 27;
-    public const int Position = 28;
-    public const int PositionListener = 29;
-    public const int ReceivedDecision = 30;
-    public const int Tile = 31;
-    public const int Time = 32;
-    public const int Turn = 33;
-    public const int View = 34;
+    public const int ExpectedDelivery = 13;
+    public const int IncomingCar = 14;
+    public const int Level = 15;
+    public const int LevelDeliveries = 16;
+    public const int LevelFinished = 17;
+    public const int LevelPackages = 18;
+    public const int LevelTitle = 19;
+    public const int MainMenu = 20;
+    public const int MapInfo = 21;
+    public const int MapPosition = 22;
+    public const int MenuIndex = 23;
+    public const int MenuIndexListener = 24;
+    public const int MenuSize = 25;
+    public const int MenuSizeListener = 26;
+    public const int OutgoingCar = 27;
+    public const int Package = 28;
+    public const int Pause = 29;
+    public const int Position = 30;
+    public const int PositionListener = 31;
+    public const int ReceivedDecision = 32;
+    public const int Tile = 33;
+    public const int Time = 34;
+    public const int Turn = 35;
+    public const int View = 36;
 
-    public const int TotalComponents = 35;
+    public const int TotalComponents = 37;
 
     public static readonly string[] componentNames = {
         "ActiveScene",
@@ -60,8 +62,10 @@ public static class GameComponentsLookup {
         "DroneHolding",
         "EntityId",
         "ExistInScene",
+        "ExpectedDelivery",
         "IncomingCar",
         "Level",
+        "LevelDeliveries",
         "LevelFinished",
         "LevelPackages",
         "LevelTitle",
@@ -72,7 +76,7 @@ public static class GameComponentsLookup {
         "MenuIndexListener",
         "MenuSize",
         "MenuSizeListener",
-        "OutcomingCar",
+        "OutgoingCar",
         "Package",
         "Pause",
         "Position",
@@ -98,8 +102,10 @@ public static class GameComponentsLookup {
         typeof(DroneHoldingComponent),
         typeof(EntityIdComponent),
         typeof(ExistInSceneComponent),
+        typeof(ExpectedDeliveryComponent),
         typeof(IncomingCarComponent),
         typeof(LevelComponent),
+        typeof(LevelDeliveriesComponent),
         typeof(LevelFinishedComponent),
         typeof(LevelPackagesComponent),
         typeof(LevelTitleComponent),
@@ -110,7 +116,7 @@ public static class GameComponentsLookup {
         typeof(MenuIndexListenerComponent),
         typeof(MenuSizeComponent),
         typeof(MenuSizeListenerComponent),
-        typeof(OutcomingCarComponent),
+        typeof(OutgoingCarComponent),
         typeof(PackageComponent),
         typeof(PauseComponent),
         typeof(PositionComponent),

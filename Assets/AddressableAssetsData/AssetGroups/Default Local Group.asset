@@ -41,6 +41,10 @@ MonoBehaviour:
     m_Address: Assets/_Prefabs/UI/LevelTitle.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: c3948381af7b6e842820c5c68037aab8
+    m_Address: Assets/_Prefabs/Game/ExpectedDelivery.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: bf7079923b649de4b956a8098813c9b1, type: 2}
   m_SchemaSet:

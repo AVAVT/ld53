@@ -14,9 +14,9 @@ public class LevelFinishedView : GameUIViewController
 
     var isVictory = contexts.game.levelFinished.IsVictory;
 
-    if (isVictory) {
+    if (!isVictory) {
       _title.SetProps(new("GAME OVER"));
-      _message.SetProps(new("The System has concluded with 99.997% confidence that you are human.\nYou are expected to cease all activity and await cleanup by conservative association."));
+      _message.SetProps(new("The System has concluded with 99.997% confidence that you are human.\nYou are expected to cease all activity and await cleanup by the Conservative Association."));
       _button.SetProps(new()
       {
         Text = "RETRY",
@@ -29,7 +29,10 @@ public class LevelFinishedView : GameUIViewController
       _button.SetProps(new()
       {
         Text = "PROCEED TO NEXT DAY",
-        OnClick = () => { _contexts.service.gameManagerService.Instance.ChangeScene(SceneTag.LevelTitle); }
+        OnClick = () => {
+          _contexts.game.ReplaceLevel(_contexts.game.level.Value + 1);
+          _contexts.service.gameManagerService.Instance.ChangeScene(SceneTag.LevelTitle);
+        }
       });
     }
   }

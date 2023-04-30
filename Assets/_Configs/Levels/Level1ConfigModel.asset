@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c9ab268a8c340038897f59527990ac5, type: 3}
   m_Name: Level1ConfigModel
   m_EditorClassIdentifier: 
-  Red: 15
+  Red: 6
   Green: 0
-  Blue: 15
+  Blue: 0
   Purple: 0
-  ItemPerWave: 3
+  ItemPerWave: 2
+  DeliveryPerWave: 2
+  DeliveryInterval: 100
+  FirstDeliveryBuffer: 0
+  DeliveryRatio: 1
   Drones:
   - {x: 0, y: 0}

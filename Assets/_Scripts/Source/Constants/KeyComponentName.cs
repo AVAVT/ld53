@@ -5,5 +5,6 @@
   Drone = 2,
   Package = 3,
   LevelFinished = 4,
-  LevelTitle = 5
+  LevelTitle = 5,
+  ExpectedDelivery = 6
 }

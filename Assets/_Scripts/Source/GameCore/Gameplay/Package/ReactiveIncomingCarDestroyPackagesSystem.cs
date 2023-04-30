@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Entitas;
-using Entitas.CodeGeneration.Attributes;
-using UnityEngine;
 
 public class ReactiveIncomingCarDestroyPackagesSystem : ReactiveSystem<GameEntity>
 {
   readonly Contexts _contexts;
-  readonly int _deliveryInterval;
+  readonly int _importInterval;
   readonly int _minDestroyX;
   readonly int _maxDestroyX;
   readonly IGroup<GameEntity> _packages;
@@ -15,7 +13,7 @@ public class ReactiveIncomingCarDestroyPackagesSystem : ReactiveSystem<GameEntit
   public ReactiveIncomingCarDestroyPackagesSystem(Contexts contexts) : base(contexts.game)
   {
     _contexts = contexts;
-    _deliveryInterval = contexts.config.gameplayConfig.Value.DeliveryInterval;
+    _importInterval = contexts.config.gameplayConfig.Value.ImportInterval;
     var spawnLocations = contexts.config.gameplayConfig.Value.IncomingZone;
     _minDestroyX = spawnLocations.Min(loc => loc.x);
     _maxDestroyX = spawnLocations.Max(loc => loc.x);
@@ -29,11 +27,13 @@ public class ReactiveIncomingCarDestroyPackagesSystem : ReactiveSystem<GameEntit
 
   protected override bool Filter(GameEntity entity)
   {
-    return (entity.turn.PackageTurn + 1) % _deliveryInterval == 0;
+    return (entity.turn.IncomingTurn + 1) % _importInterval == 0;
   }
 
   protected override void Execute(List<GameEntity> entities)
   {
+    if (_contexts.game.hasLevelFinished) return;
+
     foreach (var pkg in _packages.GetEntities(_packageCache)) {
       if (pkg.mapPosition.Value.x < _minDestroyX || pkg.mapPosition.Value.x > _maxDestroyX) continue;
 

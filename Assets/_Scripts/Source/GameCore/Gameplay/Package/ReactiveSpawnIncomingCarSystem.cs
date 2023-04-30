@@ -4,11 +4,11 @@ using Entitas;
 public class ReactiveSpawnIncomingCarSystem : ReactiveSystem<GameEntity>
 {
   readonly Contexts _contexts;
-  readonly int _deliveryInterval;
+  readonly int _importInterval;
   public ReactiveSpawnIncomingCarSystem(Contexts contexts) : base(contexts.game)
   {
     _contexts = contexts;
-    _deliveryInterval = contexts.config.gameplayConfig.Value.DeliveryInterval;
+    _importInterval = contexts.config.gameplayConfig.Value.ImportInterval;
   }
 
   protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
@@ -18,7 +18,7 @@ public class ReactiveSpawnIncomingCarSystem : ReactiveSystem<GameEntity>
 
   protected override bool Filter(GameEntity entity)
   {
-    return (entity.turn.PackageTurn + 3) % _deliveryInterval == 0;
+    return (entity.turn.IncomingTurn + 3) % _importInterval == 0;
   }
 
   protected override void Execute(List<GameEntity> entities)
