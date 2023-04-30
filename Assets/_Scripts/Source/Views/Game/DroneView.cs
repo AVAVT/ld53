@@ -1,6 +1,4 @@
-﻿using DevDef.Views;
-
-namespace System.Runtime.CompilerServices.Views.Game
+﻿namespace System.Runtime.CompilerServices.Views.Game
 {
   public class DroneView : GameBaseController
   {

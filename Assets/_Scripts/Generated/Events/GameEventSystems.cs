@@ -16,5 +16,6 @@ public sealed class GameEventSystems : Feature {
         Add(new AnyPauseEventSystem(contexts)); // priority: 0
         Add(new AnyPauseRemovedEventSystem(contexts)); // priority: 0
         Add(new PositionEventSystem(contexts)); // priority: 0
+        Add(new AnyTurnEventSystem(contexts)); // priority: 0
     }
 }

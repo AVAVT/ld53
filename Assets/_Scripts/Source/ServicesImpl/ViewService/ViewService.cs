@@ -1,10 +1,9 @@
 using System;
 using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
+using Entitas;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using Cysharp.Threading.Tasks;
-using DevDef.Views;
-using Entitas;
 
 namespace DevDef.Services
 {
@@ -56,7 +55,7 @@ namespace DevDef.Services
 
         if (!entity.hasEntityId || entity.entityId.Value != entityId) return;
 
-        var view = GameObject.Instantiate(prefab);
+        var view = Instantiate(prefab);
 
         view.InitializeView(_contexts, entity);
 

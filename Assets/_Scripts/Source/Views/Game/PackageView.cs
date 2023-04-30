@@ -1,5 +1,4 @@
-﻿using DevDef.Views;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class PackageView : GameBaseController

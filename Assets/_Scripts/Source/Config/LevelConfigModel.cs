@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "LevelConfigModel", menuName = "Databases/LevelConfigModel")]
 public class LevelConfigModel : ScriptableObject
@@ -8,4 +9,8 @@ public class LevelConfigModel : ScriptableObject
   public int Blue;
   public int Purple;
   public int ItemPerWave;
+  public int DeliveryPerWave;
+  [Range(0f, 1f)]
+  public float DeliveryRatio;
+  public List<Vector2Int> Drones;
 }

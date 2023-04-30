@@ -33,6 +33,14 @@ MonoBehaviour:
     m_Address: Assets/_Prefabs/Game/Package.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: dee0992412aafb94385d010d1d86464f
+    m_Address: Assets/_Prefabs/UI/GameOver.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 827ea293d7a80784d885357ae198f7d5
+    m_Address: Assets/_Prefabs/UI/LevelTitle.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: bf7079923b649de4b956a8098813c9b1, type: 2}
   m_SchemaSet:

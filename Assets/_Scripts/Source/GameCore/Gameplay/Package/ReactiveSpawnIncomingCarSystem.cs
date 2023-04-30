@@ -23,6 +23,8 @@ public class ReactiveSpawnIncomingCarSystem : ReactiveSystem<GameEntity>
 
   protected override void Execute(List<GameEntity> entities)
   {
+    if (_contexts.game.hasLevelFinished) return;
+
     var numberToTake = _contexts.game.levelPackages.AmountPerIncoming;
     List<PackageType> packages = new();
     while (numberToTake > 0 && _contexts.game.levelPackages.Packages.Count > 0) {
@@ -30,6 +32,8 @@ public class ReactiveSpawnIncomingCarSystem : ReactiveSystem<GameEntity>
       numberToTake--;
     }
 
-    _contexts.game.CreateEntity().AddIncomingCar(packages);
+    var car = _contexts.game.CreateEntity();
+    car.AddIncomingCar(packages);
+    car.AddExistInScene(SceneTag.Gameplay);
   }
 }

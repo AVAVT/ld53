@@ -118,6 +118,7 @@ namespace DevDef.SceneManagers
     {
       SceneTag.MainMenu => "MainMenu",
       SceneTag.Gameplay => "Gameplay",
+      SceneTag.LevelTitle => "LevelTitle",
       _ => ""
     };
 

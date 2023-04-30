@@ -30,11 +30,12 @@ public class ReactiveTurnRequestDecision : ReactiveSystem<GameEntity>
 
   protected override void Execute(List<GameEntity> entities)
   {
-    if (_contexts.game.hasReceivedDecision) return; // TODO doesn't seem right
+    if (_contexts.game.hasLevelFinished) return;
 
     DoTurn(new()
     {
       turn = _contexts.game.turn.Value,
+      tiles = _contexts.game.mapInfo.Tiles,
       drones = _drones.AsEnumerable().Select(drone => new DroneStateDto
       {
         x = drone.mapPosition.Value.x,

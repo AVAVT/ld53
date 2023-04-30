@@ -11,11 +11,8 @@ public class RemoteAiService : IAiService
   const int PORT = 1337;
   static readonly string Server = $"localhost:{PORT}";
 
-  readonly Contexts _contexts;
-
   public RemoteAiService(Contexts contexts)
   {
-    _contexts = contexts;
   }
 
   public async Task<string> Captcha(string question) => await SendRequest<string>("captcha", JsonConvert.SerializeObject(new CaptchaDto { question = question }));
@@ -35,11 +32,7 @@ public class RemoteAiService : IAiService
     await req.SendWebRequest();
 
     if (req.result == UnityWebRequest.Result.ConnectionError)
-      throw new Exception($"Error While Sending: {req.error}");
-
-    // _contexts.service.loggingService.Instance.Log(req.downloadHandler.text);
-
-    Debug.Log(req.downloadHandler.text);
+      throw new($"Error While Sending: {req.error}");
 
     return JsonConvert.DeserializeObject<T>(req.downloadHandler.text);
   }

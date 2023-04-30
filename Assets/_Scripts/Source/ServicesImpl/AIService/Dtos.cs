@@ -6,8 +6,18 @@
 public struct TurnStateDto
 {
   public int turn { get; init; }
+  public TileInfoDto[] tiles { get; init; }
   public DroneStateDto[] drones { get; init; }
   public PackageStateDto[] packages { get; init; }
+}
+
+
+public class TileInfoDto
+{
+  public int X { get; init; }
+  public int Y { get; init; }
+  public bool Droppable { get; init; }
+  public bool Pickable { get; init; }
 }
 
 public struct DroneStateDto

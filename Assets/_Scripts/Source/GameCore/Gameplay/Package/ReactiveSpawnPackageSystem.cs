@@ -1,25 +1,19 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Entitas;
-using Entitas.CodeGeneration.Attributes;
 using UnityEngine;
 
 public class ReactiveSpawnPackageSystem : ReactiveSystem<GameEntity>
 {
   readonly Contexts _contexts;
   readonly int _deliveryInterval;
-  readonly List<Vector2Int> _spawnLocations = new();
+  readonly List<Vector2Int> _spawnLocations;
 
   public ReactiveSpawnPackageSystem(Contexts contexts) : base(contexts.game)
   {
     _contexts = contexts;
     _deliveryInterval = contexts.config.gameplayConfig.Value.DeliveryInterval;
-    var dropX = -(contexts.config.gameplayConfig.Value.BoardSize.x / 2) + 2;
-
-    for (var y = -1; y < 2; y++) {
-      for (var x = dropX - 1; x < dropX + 2; x++) {
-        _spawnLocations.Add(new(x, y));
-      }
-    }
+    _spawnLocations = contexts.config.gameplayConfig.Value.IncomingZone;
   }
 
   protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
@@ -39,7 +33,10 @@ public class ReactiveSpawnPackageSystem : ReactiveSystem<GameEntity>
     for (var i = 0; i < car.Packages.Count; i++) {
       var package = _contexts.game.CreateEntity();
       package.AddPackage(car.Packages[i]);
+      package.AddExistInScene(SceneTag.Gameplay);
       package.AddMapPosition(_spawnLocations[i]);
     }
+
+    _contexts.game.RemoveIncomingCar();
   }
 }
