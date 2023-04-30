@@ -24,7 +24,8 @@ public class ReactiveStartGameSystem : ReactiveSystem<GameEventEntity>
 
   protected override void Execute(List<GameEventEntity> entities)
   {
-    _contexts.game.ReplaceLevel(2);
-    _contexts.service.gameManagerService.Instance.ChangeScene(SceneTag.LevelTitle);
+    _contexts.game.ReplaceLevel(0);
+    _contexts.game.ReplaceMainMenu(true);
+    _contexts.service.gameManagerService.Instance.ChangeScene(SceneTag.Tutorial, 0.5f);
   }
 }

@@ -3,6 +3,11 @@
   public string question { get; init; }
 }
 
+public struct CaptchaAnswer
+{
+  public string answer { get; init; }
+}
+
 public struct TurnStateDto
 {
   public int mapWidth { get; init; }

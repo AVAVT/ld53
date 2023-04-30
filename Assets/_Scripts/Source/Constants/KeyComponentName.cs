@@ -6,5 +6,6 @@
   Package = 3,
   LevelFinished = 4,
   LevelTitle = 5,
-  ExpectedDelivery = 6
+  ExpectedDelivery = 6,
+  Tutorial = 7
 }

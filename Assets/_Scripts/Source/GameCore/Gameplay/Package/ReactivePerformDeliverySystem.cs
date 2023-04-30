@@ -67,6 +67,6 @@ public class ReactivePerformDeliverySystem : ReactiveSystem<GameEntity>
 
   void ReportMissDelivery(Vector2Int location, ExpectedDeliveryComponent expectation, PackageComponent reality)
   {
-    _contexts.service.loggingService.Instance.Error($"Delivery {location} failed. Reason: expect [{expectation.Type}] but received [{(reality != null ? reality.Type : "Null")}]");
+    _contexts.service.loggingService.Instance.Error($"Delivery {location} failed. Reason: expecting [{expectation.Type}] but received [{(reality != null ? reality.Type : "Null")}]");
   }
 }

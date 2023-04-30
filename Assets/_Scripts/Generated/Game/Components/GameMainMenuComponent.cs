@@ -9,19 +9,30 @@
 public partial class GameContext {
 
     public GameEntity mainMenuEntity { get { return GetGroup(GameMatcher.MainMenu).GetSingleEntity(); } }
+    public MainMenuComponent mainMenu { get { return mainMenuEntity.mainMenu; } }
+    public bool hasMainMenu { get { return mainMenuEntity != null; } }
 
-    public bool isMainMenu {
-        get { return mainMenuEntity != null; }
-        set {
-            var entity = mainMenuEntity;
-            if (value != (entity != null)) {
-                if (value) {
-                    CreateEntity().isMainMenu = true;
-                } else {
-                    entity.Destroy();
-                }
-            }
+    public GameEntity SetMainMenu(bool newStarted) {
+        if (hasMainMenu) {
+            throw new Entitas.EntitasException("Could not set MainMenu!\n" + this + " already has an entity with MainMenuComponent!",
+                "You should check if the context already has a mainMenuEntity before setting it or use context.ReplaceMainMenu().");
         }
+        var entity = CreateEntity();
+        entity.AddMainMenu(newStarted);
+        return entity;
+    }
+
+    public void ReplaceMainMenu(bool newStarted) {
+        var entity = mainMenuEntity;
+        if (entity == null) {
+            entity = SetMainMenu(newStarted);
+        } else {
+            entity.ReplaceMainMenu(newStarted);
+        }
+    }
+
+    public void RemoveMainMenu() {
+        mainMenuEntity.Destroy();
     }
 }
 
@@ -35,25 +46,25 @@ public partial class GameContext {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly MainMenuComponent mainMenuComponent = new MainMenuComponent();
+    public MainMenuComponent mainMenu { get { return (MainMenuComponent)GetComponent(GameComponentsLookup.MainMenu); } }
+    public bool hasMainMenu { get { return HasComponent(GameComponentsLookup.MainMenu); } }
 
-    public bool isMainMenu {
-        get { return HasComponent(GameComponentsLookup.MainMenu); }
-        set {
-            if (value != isMainMenu) {
-                var index = GameComponentsLookup.MainMenu;
-                if (value) {
-                    var componentPool = GetComponentPool(index);
-                    var component = componentPool.Count > 0
-                            ? componentPool.Pop()
-                            : mainMenuComponent;
+    public void AddMainMenu(bool newStarted) {
+        var index = GameComponentsLookup.MainMenu;
+        var component = (MainMenuComponent)CreateComponent(index, typeof(MainMenuComponent));
+        component.Started = newStarted;
+        AddComponent(index, component);
+    }
 
-                    AddComponent(index, component);
-                } else {
-                    RemoveComponent(index);
-                }
-            }
-        }
+    public void ReplaceMainMenu(bool newStarted) {
+        var index = GameComponentsLookup.MainMenu;
+        var component = (MainMenuComponent)CreateComponent(index, typeof(MainMenuComponent));
+        component.Started = newStarted;
+        ReplaceComponent(index, component);
+    }
+
+    public void RemoveMainMenu() {
+        RemoveComponent(GameComponentsLookup.MainMenu);
     }
 }
 

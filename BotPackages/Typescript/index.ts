@@ -20,5 +20,5 @@ app.post("/do-turn", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`The bot is listening on port ${PORT}!`);
+  console.log(`Bot server is listening on port ${PORT}!`);
 });

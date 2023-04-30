@@ -45,6 +45,10 @@ MonoBehaviour:
     m_Address: Assets/_Prefabs/Game/ExpectedDelivery.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 7f313056a07728e4c92e8373af48c1f8
+    m_Address: Assets/_Prefabs/UI/Tutorial.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: bf7079923b649de4b956a8098813c9b1, type: 2}
   m_SchemaSet:

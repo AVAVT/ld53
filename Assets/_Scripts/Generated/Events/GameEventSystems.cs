@@ -11,11 +11,13 @@ public sealed class GameEventSystems : Feature {
     public GameEventSystems(Contexts contexts) {
         Add(new DisabledEventSystem(contexts)); // priority: 0
         Add(new DisabledRemovedEventSystem(contexts)); // priority: 0
+        Add(new MainMenuEventSystem(contexts)); // priority: 0
         Add(new MenuIndexEventSystem(contexts)); // priority: 0
         Add(new MenuSizeEventSystem(contexts)); // priority: 0
         Add(new AnyPauseEventSystem(contexts)); // priority: 0
         Add(new AnyPauseRemovedEventSystem(contexts)); // priority: 0
         Add(new PositionEventSystem(contexts)); // priority: 0
         Add(new AnyTurnEventSystem(contexts)); // priority: 0
+        Add(new TutorialEventSystem(contexts)); // priority: 0
     }
 }

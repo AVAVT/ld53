@@ -29,24 +29,27 @@ public static class GameComponentsLookup {
     public const int LevelPackages = 18;
     public const int LevelTitle = 19;
     public const int MainMenu = 20;
-    public const int MapInfo = 21;
-    public const int MapPosition = 22;
-    public const int MenuIndex = 23;
-    public const int MenuIndexListener = 24;
-    public const int MenuSize = 25;
-    public const int MenuSizeListener = 26;
-    public const int OutgoingCar = 27;
-    public const int Package = 28;
-    public const int Pause = 29;
-    public const int Position = 30;
-    public const int PositionListener = 31;
-    public const int ReceivedDecision = 32;
-    public const int Tile = 33;
-    public const int Time = 34;
-    public const int Turn = 35;
-    public const int View = 36;
+    public const int MainMenuListener = 21;
+    public const int MapInfo = 22;
+    public const int MapPosition = 23;
+    public const int MenuIndex = 24;
+    public const int MenuIndexListener = 25;
+    public const int MenuSize = 26;
+    public const int MenuSizeListener = 27;
+    public const int OutgoingCar = 28;
+    public const int Package = 29;
+    public const int Pause = 30;
+    public const int Position = 31;
+    public const int PositionListener = 32;
+    public const int ReceivedDecision = 33;
+    public const int Tile = 34;
+    public const int Time = 35;
+    public const int Turn = 36;
+    public const int Tutorial = 37;
+    public const int TutorialListener = 38;
+    public const int View = 39;
 
-    public const int TotalComponents = 37;
+    public const int TotalComponents = 40;
 
     public static readonly string[] componentNames = {
         "ActiveScene",
@@ -70,6 +73,7 @@ public static class GameComponentsLookup {
         "LevelPackages",
         "LevelTitle",
         "MainMenu",
+        "MainMenuListener",
         "MapInfo",
         "MapPosition",
         "MenuIndex",
@@ -85,6 +89,8 @@ public static class GameComponentsLookup {
         "Tile",
         "Time",
         "Turn",
+        "Tutorial",
+        "TutorialListener",
         "View"
     };
 
@@ -110,6 +116,7 @@ public static class GameComponentsLookup {
         typeof(LevelPackagesComponent),
         typeof(LevelTitleComponent),
         typeof(MainMenuComponent),
+        typeof(MainMenuListenerComponent),
         typeof(MapInfoComponent),
         typeof(MapPositionComponent),
         typeof(MenuIndexComponent),
@@ -125,6 +132,8 @@ public static class GameComponentsLookup {
         typeof(TileComponent),
         typeof(TimeComponent),
         typeof(TurnComponent),
+        typeof(TutorialComponent),
+        typeof(TutorialListenerComponent),
         typeof(ViewComponent)
     };
 }
