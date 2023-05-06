@@ -1,10 +1,10 @@
 export type TurnDecision = {
-  droneDecisions: DroneDecision[];
+  droneDecisions: DroneDecision[]; // array of commands given to drones
 };
 
 export type DroneDecision = {
-  id: number;
-  move: Move;
+  id: number; // id of the drone you're giving command to
+  move: Move; // action the drone should take
 };
 
 export enum Move {

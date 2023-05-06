@@ -18,7 +18,7 @@ MonoBehaviour:
   Purple: 45
   ItemPerWave: 9
   DeliveryPerWave: 9
-  DeliveryInterval: 150
+  DeliveryInterval: 160
   FirstDeliveryBuffer: 100
   DeliveryRatio: 0.7
   Drones:

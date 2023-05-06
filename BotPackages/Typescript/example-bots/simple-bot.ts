@@ -1,11 +1,11 @@
 import {
-  ExpectedDeliveryDto,
+  ExpectedDelivery,
   PackageType,
-  TurnStateDto,
+  TurnState,
 } from "../types/turn-state.dto";
 import { Move, TurnDecision } from "../types/turn-decision.dto";
 
-export function doTurn(turnState: TurnStateDto): TurnDecision {
+export function doTurn(turnState: TurnState): TurnDecision {
   console.log("=======");
   console.log(turnState);
   const result = {
@@ -75,9 +75,9 @@ export function doTurn(turnState: TurnStateDto): TurnDecision {
 }
 
 function findTargetDelivery(
-  turnState: TurnStateDto,
+  turnState: TurnState,
   type: PackageType | null = null
-): ExpectedDeliveryDto | null {
+): ExpectedDelivery | null {
   for (const expect of turnState.expectedDeliveries) {
     if (
       turnState.packages.some(
@@ -93,8 +93,8 @@ function findTargetDelivery(
 }
 
 function findPackageForDelivery(
-  turnState: TurnStateDto,
-  delivery: ExpectedDeliveryDto
+  turnState: TurnState,
+  delivery: ExpectedDelivery
 ) {
   for (const pkg of turnState.packages) {
     if (

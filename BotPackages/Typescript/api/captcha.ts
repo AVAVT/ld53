@@ -1,4 +1,4 @@
-export default function captcha(question: string) {
-  console.log(question);
+export default function captcha(data: { question: string }) {
+  console.log(data);
   return { answer: "W-what do you mean?" };
 }

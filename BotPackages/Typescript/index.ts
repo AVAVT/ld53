@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/captcha", async (req, res) => {
-  res.send(captcha(req.body.question));
+  res.send(captcha(req.body));
 });
 
 app.post("/do-turn", async (req, res) => {

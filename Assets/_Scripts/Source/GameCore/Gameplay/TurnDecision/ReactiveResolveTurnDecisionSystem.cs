@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Entitas;
 using UnityEngine;
@@ -39,8 +38,29 @@ public class ReactiveResolveTurnDecisionSystem : ReactiveSystem<GameEntity>
 
     var receivedDecision = _contexts.game.receivedDecision;
 
+    Dictionary<int, DroneDecision> decisions = new();
+
     foreach (var droneDecision in receivedDecision.Decision.droneDecisions) {
+      if (decisions.ContainsKey(droneDecision.id)) {
+        decisions.Remove(droneDecision.id);
+        var drone = _contexts.game.GetEntityWithEntityId(droneDecision.id);
+        if (drone is not { isDrone: true }) continue;
+
+        _contexts.service.loggingService.Instance.Error($"Drone {drone.entityId.Value} eliminated. Reason: multiple commands received in the same turn.");
+        _contexts.game.ReplaceSuspicion(_contexts.game.suspicion.Value + 20);
+        DestroyDrone(drone);
+      }
+
+      decisions.Add(droneDecision.id, droneDecision);
+    }
+
+    foreach (var droneDecision in decisions.Values) {
       var drone = _contexts.game.GetEntityWithEntityId(droneDecision.id);
+      if (drone is not { isDrone: true }) {
+        _contexts.service.loggingService.Instance.Error($"Error: Drone {droneDecision.id} does not exist.");
+        _contexts.game.ReplaceSuspicion(_contexts.game.suspicion.Value + 20);
+        continue;
+      }
       if (drone.isDestroyed) continue;
 
       var newPos = drone.mapPosition.Value + GeneralUtils.DroneMoveToDirVector(droneDecision.move);

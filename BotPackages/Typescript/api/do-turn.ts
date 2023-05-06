@@ -1,8 +1,8 @@
-import { TurnStateDto } from "../types/turn-state.dto";
+import { TurnState } from "../types/turn-state.dto";
 import { Move, TurnDecision } from "../types/turn-decision.dto";
 import simpleBot from "../example-bots/simple-bot";
 
-export default function doTurn(turnState: TurnStateDto): TurnDecision {
+export default function doTurn(turnState: TurnState): TurnDecision {
   // return simpleBot.doTurn(turnState);
 
   return {
