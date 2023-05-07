@@ -20,27 +20,21 @@ public class RemoteAiService : IAiService
 
   public async Task<TurnDecision> DoTurn(TurnStateDto state) => await SendRequest<TurnDecision>("do-turn", JsonConvert.SerializeObject(state));
 
-  async Task<T> SendRequest<T>(string endpoint, string json)
+  static async Task<T> SendRequest<T>(string endpoint, string json)
   {
-    try {
-      var data = new UTF8Encoding().GetBytes(json);
+    var data = new UTF8Encoding().GetBytes(json);
 
-      using var req = new UnityWebRequest($"http://{Server}/{endpoint}", "POST");
+    using var req = new UnityWebRequest($"http://{Server}/{endpoint}", "POST");
 
-      req.uploadHandler = new UploadHandlerRaw(data);
-      req.downloadHandler = new DownloadHandlerBuffer();
-      req.SetRequestHeader("Content-Type", "application/json");
+    req.uploadHandler = new UploadHandlerRaw(data);
+    req.downloadHandler = new DownloadHandlerBuffer();
+    req.SetRequestHeader("Content-Type", "application/json");
 
-      await req.SendWebRequest();
+    await req.SendWebRequest();
 
-      if (req.result == UnityWebRequest.Result.ConnectionError)
-        throw new($"Error While Sending: {req.error}");
+    if (req.result == UnityWebRequest.Result.ConnectionError)
+      throw new($"Error connecting to bot server: {req.error}");
 
-      return JsonConvert.DeserializeObject<T>(req.downloadHandler.text);
-    }
-    catch (Exception e) {
-      _contexts.service.loggingService.Instance.Error(e);
-      return default;
-    }
+    return JsonConvert.DeserializeObject<T>(req.downloadHandler.text);
   }
 }

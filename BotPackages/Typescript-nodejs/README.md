@@ -12,7 +12,7 @@ This package is the template for a bot written in Typescript/nodejs.
 
 1. Install nodejs at https://nodejs.org/ (either version is fine)
 
-2. Open a command line at this root `TypeScript` folder and write
+2. Open a command line at this root `Typescript-nodejs` folder and write
 
 ```
 npm install
@@ -55,7 +55,7 @@ Currently our main character is dumbfounded and can't give a good answer, but lu
 
 After you have updated the answer, don't forget to restart the bot server to run latest code. Press `CTRL+C` (or `Cmd+C`) to stop the process, then run the bot again with `npm run start`.
 
-**Remember to restart your bot every time you make code changess**
+**Remember to restart your bot every time you make code changes**
 
 ## Main game
 
@@ -69,7 +69,7 @@ Each turn, the `doTurn` function will be called with `TurnState` of the current 
 
 Your bot must return a `TurnDecision` object (`/types/turn-decision.dto.ts`) to issue orders for the drones.
 
-- The time limit for returning TurnDecision is **250ms (milliseconds)**
+- The time limit for returning `TurnDecision` is **250ms (milliseconds)**
 - You don't have to issue order to all drones. Drones who do not receive an order in a turn will stay idle.
 
 Drones can either:
@@ -141,20 +141,6 @@ The challenge in this stage is to quickly store unneeded package into a storage 
 
 If you haven't created a cache of the map tiles (in a different format from an Array) for easy access, doing so will help you manage which storage space are available.
 
-### Day 4
+### Day 4 & Day 5
 
-Packages come in 3 different colors in this stage.
-
-Further more, Delivery truck come at longer interval, stressing your stock management algorithm.
-
-### Day 5
-
-Packages come in 4 colors. Deliveries come extremely low. And there are tons of packages.
-
-This stage is designed to be non-perfectable. It should be impossible to complete this day without making any miss-delivery.
-
-The aim now is to perfect your algorithm to decrease the chance of making a mistake.
-
-A very good bot can still win this stage 100% (always make fewer than 5 mistakes in the day)
-
-### And congratulation! You have pass the hardest challenge of the game.
+These days' information are kept as secret

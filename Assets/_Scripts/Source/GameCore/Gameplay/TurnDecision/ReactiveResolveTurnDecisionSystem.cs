@@ -35,7 +35,6 @@ public class ReactiveResolveTurnDecisionSystem : ReactiveSystem<GameEntity>
       if (_contexts.game.turn.Value > 0) _contexts.game.ReplaceLevelFinished(false);
       return;
     }
-
     var receivedDecision = _contexts.game.receivedDecision;
 
     Dictionary<int, DroneDecision> decisions = new();
@@ -85,7 +84,7 @@ public class ReactiveResolveTurnDecisionSystem : ReactiveSystem<GameEntity>
         holding.Destroy();
         if (_contexts.game.GetEntityWithTile(newPos).tile.Droppable) continue;
         DestroyPackage(package);
-        _contexts.service.loggingService.Instance.Error($"Package {package.entityId.Value} destroyed. Reason: dropoff in forbidden area.");
+        _contexts.service.loggingService.Instance.Error($"Package {package.entityId.Value} destroyed. Reason: drop off in forbidden area.");
         _contexts.game.ReplaceSuspicion(_contexts.game.suspicion.Value + 20);
       }
       else if (droneDecision.move == Move.PickOrDrop) {
