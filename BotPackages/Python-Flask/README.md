@@ -35,10 +35,10 @@ This situation means you have both python 2 and 3 installed on the system. From 
 2. Open a command line at this root `Python-Flask` folder and write
 
 ```
-pip install Flask
+pip install Flask pydantic
 ```
 
-This will download/install Flask to run the bot server.
+This will download/install Flask & pydantic, the 2 libraries needed to run the bot server.
 
 3. After the installation is finished, you can start the bot server by writting:
 
